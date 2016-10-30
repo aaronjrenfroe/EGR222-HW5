@@ -12,6 +12,8 @@ import java.awt.*;
 
 
 public class Lancer extends Critter {
+    private final int okToSweep = 2000;
+    private static boolean sweepNow= false;
     static boolean found = false;
     static boolean past100 = false;
     int steps = 0;
@@ -25,8 +27,13 @@ public class Lancer extends Critter {
 
     public Action getMove(CritterInfo info) {
         steps++;
-        sweep(info);
-         if (past100){
+        if (steps >= okToSweep || sweepNow){
+            if (!sweepNow) {
+                sweepNow = true;
+            }
+            return sweep(info);
+        }
+        else if (past100){
             // infect if enemy is in front
             if (info.getFront() == Neighbor.OTHER) {
                 return Action.INFECT;
@@ -71,27 +78,39 @@ public class Lancer extends Critter {
         }
         else{
              if (steps == 1) {
-                 System.out.println("past 100 == true");
+
                  past100 = true;
              }
              // be a Giant
-             System.out.println("I should ne printing");
+
             if (info.getFront() == Neighbor.OTHER) {
                 return Action.INFECT;
             } else if (info.getFront() == Neighbor.WALL || info.getFront() == Neighbor.SAME){
-                System.out.println("turn right");
+
                 return Action.RIGHT;
             } else{
-                System.out.println("hopy");
+
                 return Action.HOP;
 
             }
         }
     }
 
-    public void sweep(CritterInfo info){
-        if (steps == 100) {
-            System.out.println("YAY");
+    public Action sweep(CritterInfo info){
+        int sweepNow = okToSweep;
+        if (steps == sweepNow) {
+
+            if (info.getDirection() != Direction.NORTH){
+                return Action.LEFT;
+            } else return Action.HOP;
+        }
+        if (info.getFront() == Neighbor.OTHER) {
+            return Action.INFECT;
+        } else if (info.getFront() != Neighbor.WALL && info.getFront() != Neighbor.SAME){
+
+            return Action.HOP;
+        } else{
+            return Action.RIGHT;
         }
     }
 
