@@ -25,7 +25,7 @@ public class CritterModel {
         // the GUI components
         if (created)
             throw new RuntimeException("Only one world allowed");
-        created = true;
+        //created = true;
 
         this.width = width;
         this.height = height;

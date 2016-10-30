@@ -1,3 +1,5 @@
+import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
+
 import java.awt.*;
 
 /**
@@ -7,11 +9,15 @@ public class Giant extends Critter {
     private int stepNumber = 0;
     // This method should be overriden (default action is turning left)
     public Action getMove(CritterInfo info) {
+
         if (info.getFront() == Neighbor.OTHER) {
+            //System.out.println("Giant is infecting");
             return Action.INFECT;
-        } else if (info.getFront() == Neighbor.WALL){
+        } else if (info.getFront() != Neighbor.WALL && info.getFront() != Neighbor.SAME){
+            return Action.HOP;
+        } else{
             return Action.RIGHT;
-        } else return Action.HOP;
+        }
     }
 
     // This method should be overriden (default color is black)

@@ -20,7 +20,7 @@ public class Bear extends Critter {
         else if(info.getFront() != Neighbor.WALL && info.getFront() != Neighbor.SAME){
             return Action.HOP;
         }
-        else return Action.LEFT;
+        else return Action.RIGHT;
 
     }
 
