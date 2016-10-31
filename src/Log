@@ -1,1 +1,5 @@
 Tried to make the Lancers Hug the corners but didn't have too much luck
+I realized that if my guys were in a corner then they only have to worry about badguys coming from two directions.
+So I pursued this method.
+This method usually resulted in me loosing 3:10 tries (305:1000 in testing).
+But I also realized that this often left fly traps un touched which I added a method to go catch them after 3000 steps.

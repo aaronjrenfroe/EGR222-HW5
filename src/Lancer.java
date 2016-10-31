@@ -12,7 +12,7 @@ import java.awt.*;
 
 
 public class Lancer extends Critter {
-    private final int okToSweep = 2000;
+    private final int okToSweep = 3000;
     private static boolean sweepNow= false;
     static boolean found = false;
     static boolean past100 = false;
